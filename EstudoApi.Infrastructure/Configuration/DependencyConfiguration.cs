@@ -9,7 +9,6 @@ namespace EstudoApi.Infrastructure.Configuration
         public static void ConfigureInfrastructureDependencies(this IServiceCollection services)
         {
             services.AddScoped<IProductRepository, ProductRepository>();
-
             services.AddAutoMapper(typeof(DependencyConfiguration).Assembly);
         }
     }

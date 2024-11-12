@@ -1,21 +1,26 @@
+using EstudoApi.Domain.Configuration;
+using EstudoApi.Infrastructure.Configuration;
+using Microsoft.EntityFrameworkCore;
 using EstudoApi.Infrastructure.Contexts;
-using Microsoft.EntityFrameworkCore; 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
+           .EnableSensitiveDataLogging()
+           .LogTo(Console.WriteLine, LogLevel.Information));
+
+builder.Services.ConfigureInfrastructureDependencies();
+builder.Services.ConfigureDomainDependencies();
+
+builder.Services.AddConnections();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=ProductsDb.db")
-           .EnableSensitiveDataLogging() 
-           .LogTo(Console.WriteLine, LogLevel.Information)); 
-
-
 var app = builder.Build();
 
-// Configuração do Swagger e dos Middlewares
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

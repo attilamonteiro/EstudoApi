@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using EstudoApi.Infrastructure.Contexts;
 
-namespace EstudoApi.Infrastructure.Configuration
+namespace EstudoApi
 {
     public static class DbConfiguration
     {
