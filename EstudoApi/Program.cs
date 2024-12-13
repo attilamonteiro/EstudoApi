@@ -5,15 +5,10 @@ using EstudoApi.Infrastructure.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
-           .EnableSensitiveDataLogging()
-           .LogTo(Console.WriteLine, LogLevel.Information));
-
 builder.Services.ConfigureInfrastructureDependencies();
 builder.Services.ConfigureDomainDependencies();
 
-builder.Services.AddConnections();
+builder.Services.AddConnections(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
