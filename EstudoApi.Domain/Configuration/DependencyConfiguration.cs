@@ -8,7 +8,6 @@ namespace EstudoApi.Domain.Configuration
         public static void ConfigureDomainDependencies(this IServiceCollection services)
         {
             services.AddScoped<IProductService, ProductsService>();
-            services.AddAutoMapper(typeof(DependencyConfiguration).Assembly);
         }
     }
 }

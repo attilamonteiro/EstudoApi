@@ -1,12 +1,11 @@
 using EstudoApi.Domain.Configuration;
 using EstudoApi.Infrastructure.Configuration;
-using Microsoft.EntityFrameworkCore;
-using EstudoApi.Infrastructure.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureInfrastructureDependencies();
 builder.Services.ConfigureDomainDependencies();
+builder.Services.ConfigureAutoMapperependencies();
 
 builder.Services.AddConnections(builder.Configuration);
 
